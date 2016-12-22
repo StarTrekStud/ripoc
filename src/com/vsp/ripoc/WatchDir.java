@@ -142,12 +142,11 @@ public class WatchDir extends MultipartFileUploader {
                 WatchEvent<Path> ev = cast(event);
                 Path name = ev.context();
                 Path child = dir.resolve(name);
- 
-                // print out event
-                System.out.format("%s: %s\n", event.kind().name(), child);
                 String[] leftRight = new String[2];
                 String swap = null;
                 if (kind == ENTRY_CREATE) {
+                    // print out event
+                    System.out.format("%s: %s\n", event.kind().name(), child);
                     String[] parsedChildArray = child.toString().split("\\\\");
                     String username = parsedChildArray[2];
                     String filename = parsedChildArray[3];
